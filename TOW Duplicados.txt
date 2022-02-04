@@ -1,0 +1,28 @@
+-- Duplicado Producción
+select A.* FROM PDM_DAILY_PROD A, (SELECT * FROM PDM_DAILY_PROD WHERE DATA_SOURCE = 'PVR') B
+WHERE A.PROD_DT = B.PROD_DT
+AND A.DATA_SOURCE = 'TOWCS';
+-- Duplicado Inyección
+select A.* FROM PDM_DAILY_INJECTION A, (SELECT * FROM PDM_DAILY_INJECTION WHERE DATA_SOURCE = 'PVR') B
+WHERE A.PROD_DT = B.PROD_DT
+AND A.DATA_SOURCE = 'TOWCS';
+-- Elimino Registros Procesado por TOW en Info Historica de PVR - No debe darse
+delete PDM_DAILY_PROD
+where prod_dt <= '22-Feb-2018' and data_source = 'TOWCS';
+delete PDM_DAILY_INJECTION
+where prod_dt <= '22-Feb-2018' and data_source = 'TOWCS';
+commit
+--Validaciones
+select l.battery_name, l.well_name, w.PRODUCTION_DATE, count(*)
+from TOWADMIN.V_TDAILY_WELL_TNX w, TOWADMIN.v_location l
+where w.well_id = l.well_id
+group by l.battery_name, l.well_name, w.PRODUCTION_DATE
+having count(*) > 1
+order by l.battery_name, l.well_name, w.PRODUCTION_DATE
+
+select l.battery_name, l.well_name, w.PRODUCTION_DATE, count(*)
+from TOWADMIN.V_TDAILY_WELL_INJ_TNX w, TOWADMIN.v_location l
+where w.well_id = l.well_id
+group by l.battery_name, l.well_name, w.PRODUCTION_DATE
+having count(*) > 1
+order by l.battery_name, l.well_name, w.PRODUCTION_DATE

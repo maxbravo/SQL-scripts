@@ -1,0 +1,7 @@
+select l.WELL_NAME,w.PRORATED_OIL, 24 - w.HOURS_ON_PRODUCTION,w.PRORATED_WATER/ (w.PRORATED_WATER + w.PRORATED_OIL)*100,w.PRORATED_WATER, w.PRORATED_WATER + w.PRORATED_OIL
+from tdaily_well_tnx w, location l
+where w.PRODUCTION_DATE = '6-Jun-2012'
+and w.battery_id in (383,539)
+and l.WELL_ID = w.WELL_ID
+and (w.PRORATED_WATER + w.PRORATED_OIL) >0
+order by l.WELL_NAME

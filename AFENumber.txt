@@ -1,0 +1,4 @@
+    SELECT afe_number, count(*)
+    FROM VW_LOOKUP_AFE_WRAPUPTORG 
+    group by afe_number   
+    having count(*) > 1

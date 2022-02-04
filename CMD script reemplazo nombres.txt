@@ -1,0 +1,1 @@
+forfiles /S /M *.bin /C "cmd /c rename @file @fname"

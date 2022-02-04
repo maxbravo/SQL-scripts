@@ -1,0 +1,35 @@
+select count(*) from tdaily_well_tnx w --1472
+where w.DOWN_TIME_REASON_TYPE is not null
+and w.PRODUCTION_DATE >= '1-Jan-2012'
+
+--lo que tienen valores inactivos
+select w.DOWN_TIME_REASON_TYPE, w.DOWN_TIME_REASON_CODE, d.DESCRIPTION 
+from tdaily_well_tnx w, tdowntime_code d
+where w.DOWN_TIME_REASON_TYPE is not null
+and w.PRODUCTION_DATE >= '1-Jan-2012'
+and w.DOWN_TIME_REASON_CODE = d.DOWNTIME_CODE
+and w.DOWN_TIME_REASON_TYPE = d.DOWNTIME_TYPE
+and d.ACTIVE = 'N'
+group by w.DOWN_TIME_REASON_TYPE, w.DOWN_TIME_REASON_CODE, d.DESCRIPTION
+
+--lista de categorias activas
+select d.DOWNTIME_TYPE, d.DOWNTIME_CODE, t.DESCRIPTION, d.DESCRIPTION
+from tdowntime_code d, tdowntime_type t
+where d.ACTIVE = 'Y'
+and d.DOWNTIME_TYPE = t.DOWNTIME_TYPE
+order by t.DESCRIPTION, d.DESCRIPTION
+
+--busco antes de actualizar
+select count(*) from tdaily_well_tnx w
+where w.DOWN_TIME_REASON_TYPE = 'o'
+and w.DOWN_TIME_REASON_CODE = 1000
+and w.PRODUCTION_DATE >= '1-Jan-2012'
+
+--actualizo
+update tdaily_well_tnx w
+set w.DOWN_TIME_REASON_TYPE = 'OPE', w.DOWN_TIME_REASON_CODE = 911
+where w.DOWN_TIME_REASON_TYPE = 'SE'
+and w.DOWN_TIME_REASON_CODE = 349
+and w.PRODUCTION_DATE >= '1-Jan-2012'
+
+commit

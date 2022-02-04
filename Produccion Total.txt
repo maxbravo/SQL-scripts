@@ -1,0 +1,10 @@
+select to_char(c.PRODDATE,'YYYY'),sum(c.OIL) 
+from ofmalloc c
+group by to_char(c.PRODDATE,'YYYY')
+
+
+select to_char(p.PRODUCTION_DATE,'YYYY'), p.FIELD_NAME, sum(p.BBLS)
+from olap_production p
+where p.FIELD_NAME = 'Block 17'
+group by to_char(p.PRODUCTION_DATE,'YYYY'), p.FIELD_NAME
+order by to_char(p.PRODUCTION_DATE,'YYYY')

@@ -1,0 +1,4 @@
+select dauditnew.dataid, dauditnew.value2 AS WORKFLOW, dauditnew.value1 AS ACTION, dauditnew.performerid, kuaf.lastname AS NAME, TO_CHAR(dauditnew.auditdate,'YYYY-MM-DD HH24:MI:SS') AS DATE_
+from dauditnew, kuaf
+where dataid  = 16540627
+and kuaf.id = dauditnew.performerid

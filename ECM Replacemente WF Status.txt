@@ -1,0 +1,50 @@
+///////////***** DETALLE DE WORKFLOWS POR TIPO Y AÑO *******//////////
+select to_char(ws.subwork_dateinitiated,'YYYY'), d.name, count(*)
+from dtree d, wmap m, wsubwork ws
+where d.subtype = 128
+and d.exatt1 is null
+and d.dataid = m.MAP_MAPOBJID
+and m.map_mapid = ws.subwork_mapid
+group by to_char(ws.subwork_dateinitiated,'YYYY'), d.name
+order by to_char(ws.subwork_dateinitiated,'YYYY') desc , count(*) desc
+///////////***** USUARIOS QUE TRABAJAN CON VERSIONES *******//////////
+select to_char(d.modifydate,'YYYY'), k.name, count(*)
+from dtree d, kuaf k where d.subtype != 0 and d.versionnum > 1 and d.userid = k.id START WITH d.dataid = 3671 CONNECT BY PRIOR d.dataid = d.parentid 
+group by to_char(d.modifydate,'YYYY'), k.name
+order by to_char(d.modifydate,'YYYY') desc, count(*) desc
+///////////***** USUARIOS QUE USAN DOCUMENTOS *******//////////
+SELECT to_char(da.auditdate,'YYYY'), k.name, count(*)
+FROM dauditnew da, kuaf k 
+WHERE da.dataid in (select d.dataid from dtree d where d.subtype != 0 START WITH d.dataid = 3671 CONNECT BY PRIOR d.dataid = d.parentid)
+and da.performerid = k.id
+and da.auditstr in ('Fetch','ZipAndEmail','Copy','ZipAndDownload','View','Rename')
+group by to_char(da.auditdate,'YYYY'), k.name
+order by to_char(da.auditdate,'YYYY') desc, count(*) desc
+///////////***** USUARIOS QUE CREAN DOCUMENTOS *******//////////
+SELECT to_char(d.createdate,'YYYY'), k.name, count(*)
+FROM dtree d, kuaf k
+WHERE d.subtype != 0
+and d.userid = k.id
+  START WITH d.dataid = 3671  
+  CONNECT BY PRIOR d.dataid = d.parentid
+group by to_char(d.createdate,'YYYY'), k.name
+order by to_char(d.createdate,'YYYY') desc, count(*) desc
+///////////***** USUARIOS QUE MODIFICAN DOCUMENTOS *******//////////
+SELECT to_char(d.modifydate,'YYYY'), k.name, count(*)
+FROM dtree d, kuaf k
+WHERE d.subtype != 0
+and d.modifiedby = k.id
+and d.modifydate != d.createdate /*Muestre solo los cambios y descarte la creación inicial*/
+  START WITH d.dataid = 3671  
+  CONNECT BY PRIOR d.dataid = d.parentid
+group by to_char(d.modifydate,'YYYY'), k.name
+order by to_char(d.modifydate,'YYYY') desc, count(*) desc
+////////////////////FACILIDADES/////////////////////////
+SELECT to_char(d.createdate,'YYYY'), k.name, count(*)
+FROM dtree d, kuaf k
+WHERE d.subtype != 0
+and d.userid = k.id
+  START WITH d.dataid in (select dataid from dtree where parentid = 1934237 and dataid != 1934449  )
+  CONNECT BY PRIOR d.dataid = d.parentid
+group by to_char(d.createdate,'YYYY'), k.name
+order by to_char(d.createdate,'YYYY') desc, count(*) desc

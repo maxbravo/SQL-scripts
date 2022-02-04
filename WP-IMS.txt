@@ -1,0 +1,43 @@
+select w.WP_ID, w.WP_SERIAL , substr(w.WP_ID,length(w.WP_ID)-length(w.WP_SERIAL)+1,length(w.WP_SERIAL))
+from work_permit w
+where w.wp_serial != substr(w.WP_ID,length(w.WP_ID)-length(w.WP_SERIAL)+1,length(w.WP_SERIAL))
+
+
+update work_permit w
+set w.WP_SERIAL = 1444
+where w.wp_id = 'C-BS -4ER-1444'
+
+commit
+
+select w.WP_ID, w.WP_SERIAL
+from work_permit w
+where w.wp_id = 'F-BS -4GF-1642'
+
+update EXECUTOR
+set EXECUTOR_COMPANYID = 451
+where EXECUTOR_COMPANYID = --1041817 id de la compañía con errores
+
+update INCIDENTE 
+set IN_CURRENTSTATUS = 6 -- para cerrarlo
+where IN_NUMEROINCIDENTE = '2015-073'
+
+select * from work_permit where wp_opendate is null
+
+update work_permit 
+set wp_opendate = TO_DATE('23-SEP-2018 07:00:00','DD-MON-YYYY HH:MI:SS'), wp_actualopendate = TO_DATE('23-SEP-2018 07:00:00','DD-MON-YYYY HH:MI:SS')
+where wp_id = 'C-TAR-PYP-10336'
+
+************Cuando no hay aprobador local*******************
+
+select * from work_permit
+where wp_localapproveran8 is null
+
+
+UPDATE work_permit wp
+SET (wp.wp_localapproveran8, wp.wp_localapprovername) = (
+  SELECT u.user_id, u.user_name
+  FROM userswp u
+  WHERE u.user_username = wp.wp_moduser)
+where wp.wp_localapproveran8 is null 
+and wp.wp_localapprovername is null
+and wp.statuswp_id in (3)

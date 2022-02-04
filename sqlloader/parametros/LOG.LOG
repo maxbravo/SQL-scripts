@@ -1,0 +1,132 @@
+
+SQL*Loader: Release 8.1.7.0.0 - Production on Tue Jan 27 12:41:05 2004
+
+(c) Copyright 2000 Oracle Corporation.  All rights reserved.
+
+Control File:   param.LDR
+Data File:      param.csv
+  Bad File:     MALOSREG.BAD
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 65536 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table TAB_RESOURCE_PARAMETER, loaded from every logical record.
+Insert option in effect for this table: APPEND
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+RP_CODE                             FIRST     *   ,  O(") CHARACTER            
+RESOURCE_CODE                        NEXT     *   ,  O(") CHARACTER            
+PARAMETER_CODE                       NEXT     *   ,  O(") CHARACTER            
+RP_VALUE                             NEXT     *   ,  O(") CHARACTER            
+
+Record 30: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 60: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 68: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 73: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 75: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 100: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 101: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 102: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 103: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 104: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 105: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 108: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 114: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 115: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 116: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 124: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 125: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 126: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 131: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 133: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 134: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 135: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 136: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 139: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 140: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 142: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+Record 146: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE_PARAMETER"."RP_VALUE")
+
+
+Table TAB_RESOURCE_PARAMETER:
+  198 Rows successfully loaded.
+  27 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  65016 bytes(63 rows)
+Space allocated for memory besides bind array:        0 bytes
+
+Total logical records skipped:          0
+Total logical records read:           225
+Total logical records rejected:        27
+Total logical records discarded:        0
+
+Run began on Tue Jan 27 12:41:05 2004
+Run ended on Tue Jan 27 12:41:06 2004
+
+Elapsed time was:     00:00:00.66
+CPU time was:         00:00:00.07    

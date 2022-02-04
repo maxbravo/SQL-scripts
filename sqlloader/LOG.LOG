@@ -1,0 +1,104 @@
+
+SQL*Loader: Release 8.1.7.0.0 - Production on Wed Dec 1 19:45:58 2004
+
+(c) Copyright 2000 Oracle Corporation.  All rights reserved.
+
+Control File:   resource.LDR
+Data File:      resource.csv
+  Bad File:     MALOSREG.BAD
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 65536 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table TAB_RESOURCE, loaded from every logical record.
+Insert option in effect for this table: APPEND
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+RESOURCE_CODE                       FIRST     *   ,  O(") CHARACTER            
+CATEGORY_CODE                        NEXT     *   ,  O(") CHARACTER            
+LOCATION_CODE                        NEXT     *   ,  O(") CHARACTER            
+BRAND_CODE                           NEXT     *   ,  O(") CHARACTER            
+PLATFORM_CODE                        NEXT     *   ,  O(") CHARACTER            
+VENDOR_CODE                          NEXT     *   ,  O(") CHARACTER            
+RESOURCE_ORIGIN                      NEXT     *   ,  O(") CHARACTER            
+RESOURCE_JDE_CODE                    NEXT     *   ,  O(") CHARACTER            
+RESOURCE_BAR_CODE                    NEXT     *   ,  O(") CHARACTER            
+RESOURCE_STICKER_STATUS              NEXT     *   ,  O(") CHARACTER            
+RESOURCE_NAME                        NEXT     *   ,  O(") CHARACTER            
+RESOURCE_SERIAL_NUMBER               NEXT     *   ,  O(") CHARACTER            
+RESOURCE_STATUS                      NEXT     *   ,  O(") CHARACTER            
+RESOURCE_ENTRY_DATE                  NEXT     *   ,  O(") CHARACTER            
+RESOURCE_BUY_DATE                    NEXT     *   ,  O(") CHARACTER            
+RESOURCE_WARRANTY_TIME               NEXT     *   ,  O(") CHARACTER            
+RESOURCE_COST                        NEXT     *   ,  O(") CHARACTER            
+RESOURCE_ENTRY_TYPE                  NEXT     *   ,  O(") CHARACTER            
+RESOURCE_COMMENT                     NEXT     *   ,  O(") CHARACTER            
+RESOURCE_PRINT_COUNTER               NEXT     *   ,  O(") CHARACTER            
+COMPANY_CODE                         NEXT     *   ,  O(") CHARACTER            
+
+Record 20: Rejected - Error on table TAB_RESOURCE.
+ORA-00001: unique constraint (TABIT.TAB_RESOURCE_I4) violated
+
+Record 25: Rejected - Error on table TAB_RESOURCE.
+ORA-01400: cannot insert NULL into ("TABIT"."TAB_RESOURCE"."RESOURCE_SERIAL_NUMBER")
+
+Record 43: Rejected - Error on table TAB_RESOURCE.
+ORA-00001: unique constraint (TABIT.TAB_RESOURCE_I4) violated
+
+Record 118: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 152: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 184: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 211: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 212: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 262: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 263: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 296: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+Record 298: Rejected - Error on table TAB_RESOURCE.
+ORA-01401: inserted value too large for column
+
+
+Table TAB_RESOURCE:
+  294 Rows successfully loaded.
+  12 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  65016 bytes(12 rows)
+Space allocated for memory besides bind array:        0 bytes
+
+Total logical records skipped:          0
+Total logical records read:           306
+Total logical records rejected:        12
+Total logical records discarded:        0
+
+Run began on Wed Dec 01 19:45:58 2004
+Run ended on Wed Dec 01 19:46:00 2004
+
+Elapsed time was:     00:00:02.26
+CPU time was:         00:00:00.11    

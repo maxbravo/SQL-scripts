@@ -1,0 +1,14 @@
+select p.*, to_char(p.PROJECT_BEGIN_DATE,'YYYY') 
+from ptt_project p
+where p.main_department_code = '012'
+order by p.PROJECT_BEGIN_DATE
+
+
+
+select to_char(p.PROJECT_BEGIN_DATE,'YYYY'),p.it_area_name, p.status_description, count(*)
+from vw_project p
+where p.project_initiative in ('Project','Initiative')
+and p.main_department_code = '012'
+and p.status_description not in ('Canceled','In Progress (Low Impact)','Initiative','In Progress')
+group by to_char(p.PROJECT_BEGIN_DATE,'YYYY'),p.it_area_name, p.status_description
+order by to_char(p.PROJECT_BEGIN_DATE,'YYYY'),p.it_area_name, p.status_description

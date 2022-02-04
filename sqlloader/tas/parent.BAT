@@ -1,0 +1,2 @@
+
+SQLLDR USERID=flight/v0lad0r3s@ORAPRD05 CONTROL=parent.LDR LOG=parentLOG.LOG

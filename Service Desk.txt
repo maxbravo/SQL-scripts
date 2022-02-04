@@ -1,0 +1,5 @@
+select *
+from sdesk09.v_andes_servicecall s
+where s.servicecalldate4 >= '1-Jan-2019'
+and s.servicecallcode4 = 'IT Services'
+order by s.servicecalldate4 asc

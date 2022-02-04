@@ -1,0 +1,36 @@
+1,28,0,Server System,0
+2,28,1,Base Software,0
+3,28,2,Desktop Software,0
+4,33,0,Klever Castellanos,0
+5,33,1,Edmundo Ortiz,0
+6,33,2,Javier Aguirre,0
+7,33,3,Carlos Alvarez,0
+8,33,4,Pedro Medina,0
+9,33,5,Juan Guevara,0
+10,33,6,Max Bravo,0
+39,69,1,No,1
+38,69,0,Yes,0
+13,50,Y,Yes,1
+14,50,N,No,0
+15,51,N,No,1
+16,51,Y,Yes,0
+28,28,3,Application,0
+18,49,1,Lang. Spanish,1
+20,53,U,UNIX,1
+21,53,W,Windows,0
+24,49,0,Lang.. English,0
+23,49,N,No,0
+25,57,0,Normal,1
+26,57,1,Hergonomic,0
+27,57,2,Wireless,0
+29,33,7,Javier Paredes,0
+30,36,0,Vehicle,0
+31,36,1,Expat,0
+32,36,2,Critical,1
+33,36,3,Expat Spouse,0
+34,36,4,Expat House,0
+35,36,5,Security,0
+36,35,0,Yes,0
+37,35,1,No,1
+40,70,0,Yes,0
+41,70,1,No,1

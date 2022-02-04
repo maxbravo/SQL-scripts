@@ -1,0 +1,213 @@
+/*AUDITORIA*/
+/*AÑO SEGUIMIENTO*/
+select * from dtree
+where parentid = 13240990
+and subtype = 0
+order by name
+/*CARPETA DENTRO DEL AÑO*/
+select * from dtree
+where parentid = 13249856
+and subtype = 204
+order by name
+/*HITOS DENTRO DEL AÑO*/
+select * from dtree
+where parentid = -13252123
+and subtype = 212
+order by name
+/*TAREAS DENTRO DEL AÑO*/
+select * from dtree
+where parentid = -13252123
+and subtype = 206
+order by name
+/*ARCHIVO DETALLE TAREAS DENTRO DEL AÑO*/
+select * from dtree
+where parentid = 13252125
+
+
+
+/*AUDITORIA*/
+204&210
+206
+
+select * from dtree
+where dataid in(13249856,-13252123) 
+--name = 'PA-2012-02 USE OF CRUDE OIL IN OPERATIONS'
+Subtype in (204,210)
+ 
+
+select * from dtree
+where dataid = 13252125
+--name = 'Rec3-PA-2012-02'  -- 13252125
+Subtype = 206
+
+select * from dtree
+where parentid = 13240990
+and subtype = 0
+order by name
+--dataid=14509044  
+
+
+******************
+select * from dtree
+where Subtype in (210)
+and createdate >= '1-JAN-2014'
+order by createdate
+
+
+**************
+
+/* OBTENER FILES CON NOMBRES DE ARCHIVOS MAYORES A 250 */
+SELECT dataid, name
+FROM dtree
+WHERE length(name) > 250
+  START WITH dataid = 11094496
+  CONNECT BY PRIOR dataid = parentid
+
+***********************************************
+/* OBTENER FILES, PATH, METADATA*/
+SELECT FCN_0GET_PATH(dtree.parentid,11094496) as PATH, dtree.name as FILE_NAME, kuaf.name as ORIGINAL_CREATEDBY, createdate as ORIGINAL_CREATEDATE, dataid as ORIGINAL_DATAID
+FROM dtree, kuaf
+WHERE dtree.createdby = kuaf.id
+AND dtree.dataid in (
+    SELECT dt.dataid as path
+    FROM dtree dt
+    WHERE dt.subtype != 0
+    START WITH dt.dataid = 11094496
+    CONNECT BY PRIOR dt.dataid = dt.parentid
+)  
+ORDER BY PATH
+
+
+***********************************************
+
+/* OBTENER EL PATH Y LOS GRUPOS DE PERMISOS ASOCIADOS*/
+CREATE OR REPLACE FUNCTION FCN_0GET_PATH(P_DATAID NUMBER, P_PARENTID NUMBER) RETURN VARCHAR2 IS
+V_RETURNVALUE VARCHAR2(10000) := NULL;
+V_TMPVALUE VARCHAR2(10000) := NULL;
+V_OBJID NUMBER := P_DATAID;
+BEGIN
+    WHILE (V_OBJID != P_PARENTID)
+    LOOP
+        SELECT NAME, PARENTID INTO V_TMPVALUE, V_OBJID
+        FROM DTREE
+        WHERE DATAID = V_OBJID;
+        V_RETURNVALUE := V_TMPVALUE || '\' || V_RETURNVALUE;        
+    END LOOP;
+RETURN V_RETURNVALUE;
+END FCN_0GET_PATH;
+
+SELECT FCN_0GET_PATH(dtree.dataid,11094390) as PATH, dtreeacl.dataid, kuaf.name, kuaf.type
+FROM dtree, dtreeacl, kuaf
+WHERE dtree.subtype = 0 AND dtree.dataid = dtreeacl.dataid AND dtreeacl.rightid = kuaf.id AND kuaf.id not in (17422030,17422226) -- Se quitan los que son ECM
+AND dtree.dataid in (
+    SELECT dt.dataid as path
+    FROM dtree dt
+    WHERE dt.subtype = 0
+    START WITH dt.dataid = 11094390
+    CONNECT BY PRIOR dt.dataid = dt.parentid
+)  
+ORDER BY PATH
+
+*******************PARA EL REPORTING SERVICES
+SELECT FCN_0GET_PATH(dtree.dataid,4252253) as PATH, dtreeacl.dataid, kuaf.name, kuaf.type, lookup_permissions.name as permissions
+FROM dtree, dtreeacl, kuaf, lookup_permissions
+WHERE dtree.subtype = 0 AND dtree.dataid = dtreeacl.dataid AND dtreeacl.rightid = kuaf.id and dtreeacl.permissions = lookup_permissions.value and kuaf.name not like '%(Delete)%'
+AND dtree.dataid in (
+    SELECT dt.dataid as path
+    FROM dtree dt
+    WHERE dt.subtype = 0
+    START WITH dt.dataid = 4252253
+    CONNECT BY PRIOR dt.dataid = dt.parentid
+)  
+ORDER BY PATH, type desc, kuaf.name
+
+--Para ver el tipo de permisos
+SELECT distinct lookup_permissions.name 
+FROM dtree, dtreeacl, kuaf, lookup_permissions
+WHERE dtree.subtype = 0 AND dtree.dataid = dtreeacl.dataid AND dtreeacl.rightid = kuaf.id and dtreeacl.permissions = lookup_permissions.value
+AND dtree.dataid in (
+    SELECT dt.dataid as path
+    FROM dtree dt
+    WHERE dt.subtype = 0
+    START WITH dt.dataid = 1978864
+    CONNECT BY PRIOR dt.dataid = dt.parentid
+)  
+ORDER BY length(lookup_permissions.name),lookup_permissions.name 
+
+--update lookup_permissions set name = 'ADM'  where value = 1834927
+--commit
+
+--para conocer en que path están los permisos especiales
+SELECT FCN_0GET_PATH(dtree.dataid,1978864) as PATH, dtreeacl.dataid, kuaf.name, kuaf.type, lookup_permissions.name as permissions
+FROM dtree, dtreeacl, kuaf, lookup_permissions
+WHERE dtree.subtype = 0 AND dtree.dataid = dtreeacl.dataid AND dtreeacl.rightid = kuaf.id and dtreeacl.permissions = lookup_permissions.value 
+and lookup_permissions.name = '367495'
+AND dtree.dataid in (
+    SELECT dt.dataid as path
+    FROM dtree dt
+    WHERE dt.subtype = 0
+    START WITH dt.dataid = 1978864
+    CONNECT BY PRIOR dt.dataid = dt.parentid
+)  
+ORDER BY PATH, type desc, kuaf.name
+
+
+************************************************
+
+/* OBTENER LOS PATHS MAYORES A 250*/
+CREATE OR REPLACE FUNCTION FCN_0PATH_LENGTH(P_DATAID NUMBER, P_PARENTID NUMBER) RETURN VARCHAR2 IS
+V_RETURNVALUE VARCHAR2(10000) := NULL;
+V_TMPVALUE VARCHAR2(10000) := NULL;
+V_OBJID NUMBER := P_DATAID;
+BEGIN
+    WHILE (V_OBJID != P_PARENTID)
+    LOOP
+        SELECT NAME, PARENTID INTO V_TMPVALUE, V_OBJID
+        FROM DTREE
+        WHERE DATAID = V_OBJID;
+        V_RETURNVALUE := V_TMPVALUE || '\' || V_RETURNVALUE;        
+    END LOOP;
+IF (LENGTH(V_RETURNVALUE) < 250) THEN
+    V_RETURNVALUE := NULL;
+END IF;
+RETURN V_RETURNVALUE;
+END FCN_0PATH_LENGTH;
+
+SELECT FCN_0PATH_LENGTH(dataid,11094496) as texto
+FROM dtree
+WHERE dtree.subtype = 0
+  START WITH dataid = 11094496
+  CONNECT BY PRIOR dataid = parentid
+  order by texto
+
+************************************************
+
+SELECT FCN_0GET_PATH(dataid,11094496)
+FROM dtree
+WHERE dtree.subtype = 0
+  START WITH dataid = 11094496
+  CONNECT BY PRIOR dataid = parentid
+ORDER BY PARENTID
+
+
+SELECT d.name, REPLACE(FCN_0GET_PATH(d.dataid,1934449),d.name || '\'), k.name, d.createdate, d.modifydate
+FROM dtree d, kuaf k
+WHERE  (d.modifydate >= '1-NOV-2019' or d.createdate >= '1-NOV-2019')and d.subtype != 0 and d.modifiedby = k.id
+  START WITH d.dataid = 1934449  
+  CONNECT BY PRIOR d.dataid = d.parentid
+ORDER BY d.parentid
+
+SELECT d.name, SUBSTR(FCN_0GET_PATH(d.dataid,1934449),1,length(FCN_0GET_PATH(d.dataid,1934449))-1), k.name, d.createdate, d.modifydate, d.dataid
+FROM dtree d, kuaf k
+WHERE  (d.modifydate >= '1-NOV-2019' or d.createdate >= '1-NOV-2019')and d.subtype != 0 and d.modifiedby = k.id
+  START WITH d.dataid = 1934449  
+  CONNECT BY PRIOR d.dataid = d.parentid
+ORDER BY d.parentid
+
+
+************************
+ID 1934449  carpeta padre Dossiers
+ID 10219355 carpeta prueba
+dtree.subtype = 736  -- tipo de los DWG
+dtree.subtype = 144  -- tipo txt xls
+dtree.subtype = 0    -- tipo carpeta

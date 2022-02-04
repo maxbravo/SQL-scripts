@@ -1,0 +1,19 @@
+select to_date(op."GL_Date"), op.AFE_CC, op."Object", op."Subsidiary", op."Subledger",
+op."Ledger" / 100, op."Explanation", op."Remark" 
+from fin_opex_details op
+where trim(op.AFE_CC) = 'D250000'
+and to_date(op."GL_Date") >= '01-Jan-2008'
+order by to_date(op."GL_Date"), op.AFE_CC, op."Object", op."Subsidiary", op."Subledger"
+ 
+ 
+//AQUI EXCLUYE LOS ACRUALS 
+select op.AFE_CC, op."Object", op."Subsidiary", sum(op."Ledger") / 100 
+from fin_opex_details op
+where trim(op.AFE_CC) = 'D250000'
+and to_date(op."GL_Date") >= '01-Jan-2008'
+and to_date(op."GL_Date") < '01-Jan-2009'
+and trim(op."Object") != '6450'
+group by op.AFE_CC, op."Object", op."Subsidiary"
+order by op.AFE_CC, op."Object", op."Subsidiary"
+
+//Para el CAPEX el filtro debe ser por Número de AFE

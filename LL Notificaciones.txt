@@ -1,0 +1,14 @@
+select * from vw_user where userid in ('mbravo','greyes','xxu','iosorio','jniquing')
+select * from NOTIFYMESSAGES where userid in (11252,3631) 
+select * from NOTIFYINTERESTS2 where userid in (11252,3631,182842,15894681,10997841) order by userid, nodeid
+
+--16699339
+select * from agentschedule where userid in (11252,3631,182842) order by userid, paramint1 -- scheid 3551
+--update agentschedule set  hourmask = 128, minutemask = 2 where schedid = 3684
+commit
+
+
+select table_name, column_name from all_tab_columns where column_name = 'SCHEDID'
+
+
+--update NOTIFYINTERESTS2 set eventidmask = 256  where userid = 11252 

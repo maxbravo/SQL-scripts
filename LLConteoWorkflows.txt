@@ -1,0 +1,8 @@
+select d.name, count(*)
+from dtree d, wmap m
+where d.subtype = 128
+and d.exatt1 is null
+and d.dataid = m.MAP_MAPOBJID
+group by d.name
+order by count(*) desc
+--340064 - Governmental Documents Workflow

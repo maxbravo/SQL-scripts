@@ -1,0 +1,79 @@
+SELECT * FROM SDESK_DWH.V_RESPONSABLES where CI_CATEGORY = 'Mobile Telephony Device' and CI_STATUS = 'Assigned'
+
+select c.CI_TYPE, c.CI_MODEL, NVL(c.CELL_OPERATOR, ' ') AS CELL_OPERATOR, NVL(c.CELL_PLAN,' ') AS CELL_PLAN, NVL(c.CI_LOCATION, ' ') AS CI_LOCATION, 
+c.CI_SUBLOCATION, NVL(e1.NAME,'N/A') AS NAME, NVL(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC) AS EMPL_STATUS_DESC, NVL(e1.DEPTNAME,e2.DEPTNAME) AS DEPTNAME, 
+e2.NAME AS CUSTODIO, c.CI_SEARCHCODE AS SEARCH_CODE
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Mobile Telephony Device'
+and c.CI_STATUS = 'Assigned'
+and NVL(e1.DEPTNAME,e2.DEPTNAME) in (:P_DEPARTMENT)
+and nvl(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC) in (:P_EMPLOYEE_TYPE)
+and nvl(e1.NAME,'N/A') in (:P_RESPONSIBLE)
+and nvl(c.CI_LOCATION,'N/A') in (:P_LOCATION)
+
+select distinct(NVL(e1.DEPTNAME,e2.DEPTNAME)) AS DEPARTMENT
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Mobile Telephony Device'
+and c.CI_STATUS = 'Assigned'
+order by DEPARTMENT
+
+select distinct(nvl(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC)) AS EMPLOYEE_TYPE
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Mobile Telephony Device'
+and c.CI_STATUS = 'Assigned'
+and NVL(e1.DEPTNAME,e2.DEPTNAME) in (:P_DEPARTMENT)
+order by EMPLOYEE_TYPE
+
+select distinct(nvl(e1.NAME,'N/A')) AS NAME
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Mobile Telephony Device'
+and c.CI_STATUS = 'Assigned'
+and NVL(e1.DEPTNAME,e2.DEPTNAME) in (:P_DEPARTMENT)
+and nvl(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC) in (:P_EMPLOYEE_TYPE)
+order by NAME
+
+select distinct(nvl(c.CI_LOCATION,'N/A')) AS LOCATION
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Mobile Telephony Device'
+and c.CI_STATUS = 'Assigned'
+and NVL(e1.DEPTNAME,e2.DEPTNAME) in (:P_DEPARTMENT)
+and nvl(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC) in (:P_EMPLOYEE_TYPE)
+and nvl(e1.NAME,'N/A') in (:P_RESPONSIBLE)
+order by LOCATION
+
+
+
+***********************
+select c.CI_TYPE, c.CI_MODEL, NVL(c.CI_LOCATION, ' ') AS CI_LOCATION, 
+c.CI_SUBLOCATION, NVL(e1.NAME,c.resp1) AS NAME, NVL(e1.EMPL_STATUS_DESC,e2.EMPL_STATUS_DESC) AS EMPL_STATUS_DESC, NVL(e1.DEPTNAME,c.resp1) AS DEPTNAME, 
+nvl(e2.NAME,cu.cust1) AS CUSTODIO, c.CI_SEARCHCODE AS SEARCH_CODE, c.CI_BRAND 
+from SDESK_DWH.V_RESPONSABLES c, everyone@oworld_ext e1, SDESK_DWH.V_CUSTODIOS cu, everyone@oworld_ext e2
+where c.CI_ID = cu.CI_ID (+)
+and c.resp1 = e1.user_id (+)
+and cu.cust1 = e2.user_id (+)
+and c.CI_CATEGORY = 'Impresoras'
+and c.CI_STATUS = 'Assigned'
+order by c.CI_TYPE, c.CI_BRAND, c.CI_MODEL
+
+
+select *
+from SDESK_DWH.V_RESPONSABLES
+where ci_type like 'Display%'
+or ci_type like 'Monitor%'
+or ci_type like 'Project%'
+order by ci_type, ci_model

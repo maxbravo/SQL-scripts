@@ -1,0 +1,5 @@
+        
+    select delegador, count(*) 
+    from current_delegation
+    group by delegador   
+    having count(*) > 1

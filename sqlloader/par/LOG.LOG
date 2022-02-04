@@ -1,0 +1,165 @@
+
+SQL*Loader: Release 8.1.7.0.0 - Production on Thu Jul 15 15:32:21 2004
+
+(c) Copyright 2000 Oracle Corporation.  All rights reserved.
+
+Control File:   param.LDR
+Data File:      param.csv
+  Bad File:     MALOSREG.BAD
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 65536 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table TAB_RESOURCE_PARAMETER, loaded from every logical record.
+Insert option in effect for this table: APPEND
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+RP_CODE                             FIRST     *   ,  O(") CHARACTER            
+RESOURCE_CODE                        NEXT     *   ,  O(") CHARACTER            
+PARAMETER_CODE                       NEXT     *   ,  O(") CHARACTER            
+RP_VALUE                             NEXT     *   ,  O(") CHARACTER            
+
+Record 1918: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 2928: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6752: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6760: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6768: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6776: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6784: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6792: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6800: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6808: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6816: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6824: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6832: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6840: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6848: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6856: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6864: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6872: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6880: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6888: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 6896: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9117: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9125: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9133: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9141: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9149: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9157: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9165: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9173: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 9833: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 10792: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10793: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10794: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10795: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10796: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10797: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_CATEGORYPARAM_RESOURCEPARAM) violated - parent key not found
+
+Record 10798: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+Record 10799: Rejected - Error on table TAB_RESOURCE_PARAMETER.
+ORA-02291: integrity constraint (TABIT.FK_RESOURCE__RESOURCEPARAMETER) violated - parent key not found
+
+
+Table TAB_RESOURCE_PARAMETER:
+  11343 Rows successfully loaded.
+  38 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  65016 bytes(63 rows)
+Space allocated for memory besides bind array:        0 bytes
+
+Total logical records skipped:          0
+Total logical records read:         11381
+Total logical records rejected:        38
+Total logical records discarded:        0
+
+Run began on Thu Jul 15 15:32:21 2004
+Run ended on Thu Jul 15 15:32:44 2004
+
+Elapsed time was:     00:00:23.69
+CPU time was:         00:00:00.38    

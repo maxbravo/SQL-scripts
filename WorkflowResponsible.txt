@@ -1,0 +1,100 @@
+select w.SUBWORKTASK_WORKID, w.SUBWORKTASK_TITLE,  u.NAME, a.WORKAUDIT_TASKID, w.SUBWORKTASK_DATEREADY, w.SUBWORKTASK_DATEDONE, w.SUBWORKTASK_STATUS, FCN_WF_GET_COMMENT(a.workaudit_workid,a.WORKAUDIT_TASKID) as Comentario
+from wworkaudit a, wsubworktask w, vw_user u
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and w.SUBWORKTASK_PERFORMERID = u.id
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and u.NAME = 'Baquero Torres Jhanine Alejandra'
+order by w.SUBWORKTASK_DATEREADY desc
+
+
+select * from vw_user u where u.USERID = 'jbaquer2'
+
+
+select u.NAME, count(*)
+from wworkaudit a, wsubworktask w, vw_user u
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and w.SUBWORKTASK_PERFORMERID = u.id
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+group by u.NAME
+order by count(*) desc
+
+
+******************CAMBIO RESPONSABLES MASIVO
+select * from kuaf
+where id = 17256465
+--12129083  Hu, Quan
+--17256465 zwang
+
+select *
+from wworkaudit a, wsubworktask w
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and w.SUBWORKTASK_PERFORMERID = 12129083
+order by w.SUBWORKTASK_DATEREADY desc
+
+select * from wsubworktask
+where SUBWORKTASK_FLAGS = 36
+and SUBWORKTASK_STATUS > 0
+and SUBWORKTASK_PERFORMERID = 12129083
+and subworktask_subworkid in
+(select subworktask_subworkid
+from wworkaudit a, wsubworktask w
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and w.SUBWORKTASK_PERFORMERID = 12129083)
+
+select * from wworkaudit
+where workaudit_PERFORMERID = 12129083
+and workaudit_workid in (select subworktask_subworkid
+from wworkaudit a, wsubworktask w
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and w.SUBWORKTASK_PERFORMERID = 12129083)
+
+***********
+update wsubworktask
+set SUBWORKTASK_PERFORMERID = 17256465
+where SUBWORKTASK_FLAGS = 36
+and SUBWORKTASK_STATUS > 0
+and SUBWORKTASK_PERFORMERID = 12129083
+and subworktask_subworkid in
+(select subworktask_subworkid
+from wworkaudit a, wsubworktask w
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and w.SUBWORKTASK_PERFORMERID = 12129083)
+
+update wworkaudit
+set workaudit_PERFORMERID = 17256465
+where workaudit_PERFORMERID = 12129083
+and workaudit_workid in (select subworktask_subworkid
+from wworkaudit a, wsubworktask w
+where  a.workaudit_workid = w.SUBWORKTASK_SUBWORKID
+and a.WORKAUDIT_TASKID = w.SUBWORKTASK_TASKID
+and a.WORKAUDIT_STATUS in (21)
+and w.SUBWORKTASK_FLAGS = 36
+and w.SUBWORKTASK_STATUS > 0
+and w.SUBWORKTASK_PERFORMERID = 12129083)
+
+
+commit
+
+select * from vw_user where userid = 'ssantoru' -- 11725636 -- Santorum Montero Sharon Yoana

@@ -1,0 +1,5 @@
+select ss.PROJECTNAME, ss.DEPARTMENT, ss.TOTALAMOUNT, ss.PREPARED, ss.BOARDTYPE, FCN_TB_PROC_RVW(ss.VOLUMEID), ss.VOLUMEID
+from lookup_tb ss, wsubwork ws
+where ss.VOLUMEID = ws.SUBWORK_WORKID
+and ws.SUBWORK_STATUS = 1
+and ss.PO = 1

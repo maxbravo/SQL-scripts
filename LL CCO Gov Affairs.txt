@@ -1,0 +1,5 @@
+update vw_contract_header
+set Department = 'Government Affairs', ProcDepartment = 'Government Affairs'
+where abno = '1379186'
+
+--El error se origina porque solo existe un contrato y el volumen de informacion inicial que carga es muy elevado, por tal motivo se descarta. El workaround es poner un contratista fake para que se pueda realizar la solicitud.

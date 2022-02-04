@@ -1,0 +1,23 @@
+select * from towadmin.mv_sbfreq
+order by "Production Date" desc
+
+select * from TOWADMIN.VW_PRODBYBLK
+order by "Production Date" desc
+
+select * from TOWADMIN.OFMALLOC
+order by PRODDATE desc
+
+select * from TOWADMIN.OFMINJ
+order by PORDDATE desc
+
+select * from TOWADMIN.OFMWELL
+order by PRODDATE desc
+
+select * from TOWADMIN.MV_TDAILY_WELL_TNX
+order by PRODUCTION_DATE desc
+
+select * from TOWADMIN.MV_TDAILY_WELL_INJ_TNX
+order by PRODUCTION_DATE desc
+
+select * from TOWADMIN.MV_TWELL_SPECS
+order by PRODUCTION_DATE desc
